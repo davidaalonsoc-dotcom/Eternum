@@ -1,83 +1,168 @@
 
 body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-}
-
-.navegador {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #1e1e1e;
-  padding: 10px 20px;
-  color: white;
+  background: #0f0c29; 
+  background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+  color: #00fff7;
+  font-family: 'Orbitron', sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
   position: relative;
 }
-
-.logo {
-  font-size: 1.5em;
-  font-weight: bold;
-}
-
-.nav {
-  display: flex;
-  gap: 20px;
-}
-
-.nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s;
-}
-
-.nav a:hover {
-  color: #00c3ff;
-}
-main
-{
-    padding: 12px;
-    margin: 45px;
-    background-color: mediumorchid;
-    width: 252px;
-    height: 200px;
-    box-shadow: #2a2a2a;
-
-}
-
-
-.menu {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-}
-
-.menu span {
-  width: 25px;
-  height: 3px;
-  background: white;
-  border-radius: 2px;
-}
-
-
-@media (max-width: 768px) {
-  .nav {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    right: 20px;
-    background: #2a2a2a;
-    padding: 10px;
-    border-radius: 5px;
+@keyframes glitch-anim {
+  0% {
+    clip: rect(44px, 9999px, 56px, 0);
+    transform: translate(-2px, -2px);
   }
-
-  .nav.show {
-    display: flex;
+  20% {
+    clip: rect(12px, 9999px, 85px, 0);
+    transform: translate(2px, 2px);
   }
-
-  .menu {
-    display: flex;
+  40% {
+    clip: rect(80px, 9999px, 100px, 0);
+    transform: translate(-2px, 0);
   }
+  60% {
+    clip: rect(20px, 9999px, 40px, 0);
+    transform: translate(2px, -2px);
+  }
+  80% {
+    clip: rect(50px, 9999px, 70px, 0);
+    transform: translate(-2px, 2px);
+  }
+  100% {
+    clip: rect(44px, 9999px, 56px, 0);
+    transform: translate(0);
+  }
+}
+
+
+.glitch {
+  position: relative;
+  font-size: 4rem;
+  font-weight: 900;
+  color: #00fff7;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  user-select: none;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  overflow: hidden;
+  color: #ff00c8;
+  clip: rect(0, 900px, 0, 0);
+}
+
+.glitch::before {
+  animation: glitch-anim 2s infinite linear alternate-reverse;
+  left: 2px;
+  text-shadow: -2px 0 #ff00c8;
+}
+
+.glitch::after {
+  animation: glitch-anim 2s infinite linear alternate;
+  left: -2px;
+  text-shadow: -2px 0 #00fff7;
+  color: #00fff7;
+}
+
+
+.glitch-lines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 0, 200, 0.1),
+      rgba(255, 0, 200, 0.1) 2px,
+      transparent 2px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(0, 255, 255, 0.1),
+      rgba(0, 255, 255, 0.1) 2px,
+      transparent 2px,
+      transparent 4px
+    );
+  mix-blend-mode: screen;
+  animation: glitch-lines-move 5s linear infinite;
+}
+
+@keyframes glitch-lines-move {
+  0% {
+    background-position: 0 0, 0 0;
+  }
+  100% {
+    background-position: 100px 100px, -100px -100px;
+  }
+}
+
+
+.container-main {
+  position: relative;
+  z-index: 10;
+  padding-top: 5rem;
+  text-align: center;
+}
+
+.btn-cyberpunk {
+  background: linear-gradient(45deg, #ff00c8, #00fff7);
+  border: none;
+  color: #000;
+  font-weight: 700;
+  font-size: 1.25rem;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  box-shadow:
+    0 0 10px #ff00c8,
+    0 0 20px #00fff7,
+    0 0 30px #ff00c8,
+    0 0 40px #00fff7;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.btn-cyberpunk:hover,
+.btn-cyberpunk:focus {
+  background: linear-gradient(45deg, #00fff7, #ff00c8);
+  color: #fff;
+  box-shadow:
+    0 0 20px #00fff7,
+    0 0 30px #ff00c8,
+    0 0 40px #00fff7,
+    0 0 50px #ff00c8;
+  outline: none;
+}
+
+
+.description {
+  font-size: 1.25rem;
+  margin: 2rem auto 4rem;
+  max-width: 600px;
+  color: #ff00c8;
+  text-shadow: 0 0 5px #ff00c8;
+}
+
+
+footer {
+  position: fixed;
+  bottom: 1rem;
+  width: 100%;
+  text-align: center;
+  color: #00fff7;
+  font-size: 0.9rem;
+  user-select: none;
+  text-shadow: 0 0 5px #00fff7;
+  z-index: 10;
 }
